@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import Bbob from '../../../Bbob/JSApi/Bbob';
+import Bbob from '../Bbob';
 import Menu from './Menu.vue';
 let router = useRouter();
 let drawer = ref(false)

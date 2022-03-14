@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Bbob from '../../../Bbob/JSApi/Bbob'
+import Bbob from '../Bbob'
 
 </script>
 

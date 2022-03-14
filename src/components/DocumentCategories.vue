@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import Bbob, { LinkInfo } from '../../../Bbob/JSApi/Bbob';
+import Bbob, { LinkInfo } from '../Bbob';
 import { activeName, getArticle, toc } from '../composition/documentData';
 
 const router = useRouter();

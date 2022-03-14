@@ -3,7 +3,7 @@ import { normal } from '../composition/changeSize'
 import DocumentCategories from './DocumentCategories.vue'
 import { clearCache, getArticle, rawHtml } from '../composition/documentData';
 import { onMounted, onUpdated, watch } from 'vue';
-import Bbob from '../../../Bbob/JSApi/Bbob';
+import Bbob from '../Bbob';
 import { onBeforeRouteLeave, useRouter } from 'vue-router';
 import { routes } from '../router';
 

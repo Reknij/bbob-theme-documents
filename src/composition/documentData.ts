@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import Bbob from "../../../Bbob/JSApi/Bbob";
+import Bbob from '../Bbob';
 
 let toc = ref('')
 let rawHtml = ref('<h1 style="text-align: center;">Welcome to documents!!!</h1>')
