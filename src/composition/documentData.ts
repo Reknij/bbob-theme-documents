@@ -7,12 +7,7 @@ let activeName = ref('0')
 
 function getArticle(address: string) {
     if (address == 'default')return;
-    let a =address;
-    const sa = Bbob.meta.extra.shortAddress;
-    if (sa) {
-        a = `${sa.startOfAddress}${address}${sa.endOfAddress}`;
-    }
-    Bbob.api.getArticleFromAddress(a, (article) => {
+    Bbob.api.getArticleFromAddress(address, (article) => {
         if (article.contentParsed) {
             rawHtml.value = article.contentParsed;
         }
