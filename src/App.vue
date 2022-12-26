@@ -30,7 +30,6 @@ watch(() => normal.value, () => setElMainWidth(normal.value));
         <MenuSmall v-else #default="ms">
           <DocumentCategories
             v-if="router.currentRoute.value.name == routes[1].name"
-            :ready-click="() => ms.offIt()"
           ></DocumentCategories>
         </MenuSmall>
       </el-header>

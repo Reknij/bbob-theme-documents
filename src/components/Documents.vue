@@ -1,25 +1,26 @@
 <script setup lang="ts">
 import { normal } from '../composition/changeSize'
 import DocumentCategories from './DocumentCategories.vue'
-import { clearCache, getArticle, rawHtml } from '../composition/documentData';
+import { clearCache, getArticle, articleSelected } from '../composition/documentData';
 import { onMounted, onUpdated, watch } from 'vue';
 import Bbob from '../Bbob';
 import { onBeforeRouteLeave, useRouter } from 'vue-router';
-import { routes } from '../router';
 
 let router = useRouter();
-if (router.currentRoute.value.name == routes[1].name) {
-    let rpa = router.currentRoute.value.params.address as string;
-    if (!rpa || rpa == 'default') rpa = 'default';
-    getArticle(rpa);
-}
+
 onBeforeRouteLeave(() => {
     clearCache();
 })
 
-onMounted(()=>{
+onMounted(() => {
     clearCache();
-    drawHtml(rawHtml.value)
+    let address = router.currentRoute.value.params.address as string;
+    if (address && address != 'loading') {
+        getArticle(address);
+    }
+    else {
+        drawHtml(articleSelected.value?.contentParsed ?? 'No found content parsed.')
+    }
 })
 function drawHtml(value: string) {
     let htmlContent = document.getElementById('htmlContent')
@@ -28,8 +29,8 @@ function drawHtml(value: string) {
         Bbob.api.executeScriptElements(htmlContent);
     }
 }
-watch(() => rawHtml.value, drawHtml);
-watch(()=> router.currentRoute.value, (value, oldValue)=>{
+watch(articleSelected, () => drawHtml(articleSelected.value?.contentParsed ?? 'No found content parsed.'));
+watch(router.currentRoute, (value, oldValue) => {
     if (value.params.address == oldValue.params.address) return;
     getArticle(value.params.address as string);
 })
@@ -54,6 +55,7 @@ watch(()=> router.currentRoute.value, (value, oldValue)=>{
 .articlesTitle {
     margin-left: 15px;
 }
+
 #articleContent {
     max-width: 768px;
     margin-left: auto;

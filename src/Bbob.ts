@@ -11,7 +11,9 @@ export interface Article {
     categories?: string[],
     tags?: string[],
     contentParsed?: string
-    toc?: string
+    toc?: string,
+    nextArticle?: LinkInfo,
+    previousArticle?: LinkInfo
 }
 export interface FilterSource {
     text: string,
@@ -23,7 +25,7 @@ export interface ArticleProcessCallBack {
 export interface LinkInfoArrayProcessCallBack {
     (linkArray: LinkInfo[]): void
 }
-export interface BbobMeta{
+export interface BbobMeta {
     blogName: string,
     author: string,
     description: string,
@@ -48,8 +50,11 @@ export interface BbobJSApi {
         resetNextLinkInfosOffset(): void,
         resetNextLinkInfosOffset(new_offset: number): void,
         nextLinkInfos(callback: LinkInfoArrayProcessCallBack): void,
+        nextLinkInfosAsync(): Promise<LinkInfo[]>,
         getArticleFromAddress(address: string, callback: ArticleProcessCallBack): void,
+        getArticleFromAddressAsync(address: string): Promise<Article>,
         getLinkInfosWithAddress(address: string, callback: LinkInfoArrayProcessCallBack): void,
+        getLinkInfosWithAddressAsync(address: string): Promise<LinkInfo[]>,
         executeScriptElements(containerElement: Element): void
     }
 }

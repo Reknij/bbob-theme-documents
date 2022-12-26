@@ -14,7 +14,7 @@ const routes = [
     {
         name: "Documents",
         path: '/documents/:address',
-        defaultPath: "/documents/default",
+        defaultPath: "/documents/loading",
         component: Documents
     },
     {

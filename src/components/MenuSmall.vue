@@ -11,7 +11,7 @@ let drawer = ref(false)
 <template>
     <div class="container">
         <el-drawer size="100%" v-model="drawer" direction="ltr">
-            <Menu mode="vertical" :ready-click="() => drawer = false"></Menu>
+            <Menu mode="vertical"></Menu>
             <slot :offIt="()=>drawer = false"></slot>
         </el-drawer>
         <div class="menu-container" @click="drawer = true">
